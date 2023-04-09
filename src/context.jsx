@@ -13,13 +13,21 @@ const getLocalStorage = () => {
   }
 };
 
+const getModeFromLocalStorage = () => {
+  let dark = localStorage.getItem("darkMode");
+  if (dark) {
+    return JSON.parse(localStorage.getItem("darkMode"));
+  } else {
+    return false;
+  }
+};
+
 const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const [favorites, setFavorites] = useState(getLocalStorage());
   const [value, setValue] = useState("");
-  const allCategories = ["all", ...new Set(recipes.map((item) => item.area))];
-  const [categories, setCategories] = useState(allCategories);
+  const [isDark, setIsDark] = useState(getModeFromLocalStorage());
 
   const addToFavorites = (id) => {
     recipes.find((item, index) => {
@@ -30,7 +38,9 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  console.log(categories, allCategories);
+  const toggleDark = () => {
+    setIsDark(!isDark);
+  };
 
   const filterRecipes = (category) => {
     if (category == "all") {
@@ -73,6 +83,10 @@ const AppProvider = ({ children }) => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(isDark));
+  }, [isDark]);
+
   return (
     <AppContext.Provider
       value={{
@@ -83,8 +97,9 @@ const AppProvider = ({ children }) => {
         favorites,
         addToFavorites,
         ToastContainer,
+        isDark,
+        toggleDark,
         filterRecipes,
-        categories,
         deleteFromFavorites,
       }}
     >

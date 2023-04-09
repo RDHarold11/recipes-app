@@ -5,10 +5,11 @@ import RecipeContainer from '../components/RecipeContainer'
 import Categories from '../components/Categories'
 import { useGlobalContext } from '../context'
 
+
 const Home = () => {
-  const {ToastContainer} = useGlobalContext()
+  const {ToastContainer, isDark} = useGlobalContext()
   return (
-    <div>
+    <div className={isDark ? "bg-[#333] text-white" : ""}>
       <ToastContainer position="top-center"></ToastContainer>
       <Hero></Hero>
       <SearchForm></SearchForm>

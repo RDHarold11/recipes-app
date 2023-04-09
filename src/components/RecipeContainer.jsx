@@ -14,7 +14,7 @@ const RecipeContainer = () => {
     return <h2 className='text-center text-2xl'>There's no recipes</h2>
   } 
   return (
-    <section className='px-4 max-w-[1100px] mx-auto grid md:grid-cols-5 grid-cols-3 items-center justify-between gap-3 pt-[60px] pb-10'>
+    <section className='px-4 max-w-[1100px] mx-auto grid md:grid-cols-5 grid-cols-2 items-center justify-between gap-3 pt-[60px] pb-10'>
       {
         recipes.map((item) => {
           return <Recipe key={item.id} {...item}></Recipe>

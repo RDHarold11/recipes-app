@@ -18,7 +18,7 @@ const Recipe = ({id, name, img}) => {
       className='absolute cursor-pointer top-2 left-2 bg-[#fff] hover:bg-[#FF7043] duration-75 ease-out text-dark px-3 py-3 rounded-full pointer'
       onClick={() => addToFavorites(id)}
       >
-        <BsBookmark size={25}></BsBookmark>
+        <BsBookmark size={25} color='#333'></BsBookmark>
       </div>
 
     </div>

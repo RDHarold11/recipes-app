@@ -3,8 +3,7 @@ import { useGlobalContext } from '../context'
 import FavoriteRecipe from '../components/FavoriteRecipe'
 
 const Favorites = () => {
-  const {favorites} = useGlobalContext()
-  console.log(favorites)
+  const {favorites, isDark} = useGlobalContext()
   if(favorites.length < 1){
     return <h2 className='text-center'>Nothing to display</h2>
   }
